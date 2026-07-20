@@ -1,0 +1,31 @@
+generated: '2026-07-17'
+method: searched
+source: https://developer.apperio.com/ — Authentication section of the Apperio API Documentation
+docs: https://developer.apperio.com/
+description: >-
+  Apperio authenticates every API request with a user-scoped API token supplied
+  in the HTTP Authorization header using the "Token" scheme. The OpenAPI does not
+  declare a securityScheme, so this profile is captured from the published docs.
+summary:
+  types: [apiKey]
+  api_key_in: [header]
+  oauth2_flows: []
+schemes:
+  - name: ApiToken
+    type: apiKey
+    in: header
+    parameter: Authorization
+    format: 'Authorization: Token <TOKEN VALUE>'
+    scope: >-
+      A token carries all capabilities of the user who created it (business or
+      law-firm side). Apperio recommends least-privilege service accounts and
+      cycling the key at least every 12 months.
+    provisioning: >-
+      Create an API Key from the profile page in the Apperio application; contact
+      Customer Success to enable API access on the account.
+    management: >-
+      Tokens are self-managed via the Users endpoints
+      (GET/POST /api/v1/users/tokens/, DELETE /api/v1/users/tokens/{token-id}/,
+      PUT /api/v1/users/tokens/{token-id}/status/). Apperio cannot recover a lost
+      token; a new one must be generated.
+    sources: [openapi/apperio-openapi-original.yml]
