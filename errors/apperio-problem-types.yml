@@ -1,0 +1,36 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/apperio-openapi-original.yml — 4xx responses; enriched from the Authentication and Acceptable-usage sections of https://developer.apperio.com/
+format: field-keyed-messages
+description: >-
+  Apperio does not use RFC 9457 problem+json. Validation errors return a JSON
+  object mapping each offending field (or a general key) to an array of
+  human-readable message strings. This catalog lists the HTTP status responses
+  the OpenAPI declares plus the documented 429.
+envelope:
+  content_type: application/json
+  shape: 'object with additionalProperties: array<string> (field -> error messages)'
+problems:
+  - status: 400
+    title: Bad request / validation failed
+    meaning: Request parameters or body failed validation.
+    remediation: Correct the offending fields listed in the response body.
+    seen_on:
+      - GET /api/v1/data/analytics
+      - PUT /api/v1/ebilling/invoices/{invoice-id}/attributes/
+  - status: 401
+    title: Unauthenticated
+    meaning: Missing or invalid API token in the Authorization header.
+    remediation: "Supply a valid token as 'Authorization: Token <value>'; create one on the profile page."
+  - status: 403
+    title: Forbidden
+    meaning: The token's user/organisation lacks the capability (BUSINESS/LAW_FIRM) for this resource.
+    remediation: Use a token whose user has the required capability and resource access.
+  - status: 404
+    title: Not found
+    meaning: The referenced resource does not exist or is not visible to the token's organisation.
+    remediation: Verify the resource id and that it belongs to the authenticated organisation.
+  - status: 429
+    title: Too Many Requests
+    meaning: The acceptable-usage limit was exceeded (10,000 requests/hour per token, or parallel requests).
+    remediation: Back off and retry; make requests from one token in series; contact Customer Success to raise limits.

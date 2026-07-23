@@ -1,0 +1,74 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/apperio-openapi-original.yml — derived from the /api/v1 path hierarchy and glossary (schemas are inline, no components.schemas)
+description: >-
+  Entity-relationship graph for the Apperio API, derived from the resource path
+  structure. Apperio is a two-sided legal-spend platform; the core entities are
+  matters (a.k.a. engagements), invoices, matter tags, users/tokens, and
+  business invoice attributes.
+entities:
+  - name: Matter
+    aka: [Engagement]
+    path: /api/v1/matters/{matter-id}
+    id_param: matter-id
+    description: A unit of legal work (matter/engagement) that spend is tracked against.
+    relationships:
+      - has_many: Invoice
+        via: matter-id
+      - has_many: MatterTagLink
+        via: matter-id
+  - name: Invoice
+    path: /api/v1/ebilling/invoices/{invoice-id}
+    id_param: invoice-id
+    description: A law-firm invoice moving through an e-billing approval workflow.
+    relationships:
+      - belongs_to: Matter
+        via: matter-id
+      - has_one: ApprovalWorkflow
+        via: invoice-id
+      - has_many: BusinessAttribute
+        via: name
+  - name: ApprovalWorkflow
+    path: /api/v1/ebilling/invoices/{invoice-id}/approval-workflow
+    description: The approval state machine for an invoice (approve / reject / adjust / query).
+    relationships:
+      - belongs_to: Invoice
+        via: invoice-id
+      - has_many: ApprovalState
+        via: invoice-approval-state-id
+  - name: BusinessAttribute
+    path: /api/v1/ebilling/invoices/business-attributes/{name}
+    id_param: name
+    description: Custom business attributes attachable to invoices.
+  - name: MatterTagSet
+    path: /api/v1/filter/matter-tag-sets/{matter-tag-set-id}
+    id_param: matter-tag-set-id
+    description: A named grouping of matter tags used for filtering/segmentation.
+    relationships:
+      - has_many: MatterTag
+        via: matter-tag-set-id
+  - name: MatterTag
+    path: /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/{matter-tag-id}
+    id_param: matter-tag-id
+    description: A tag within a tag set; can be linked to matters.
+    relationships:
+      - belongs_to: MatterTagSet
+        via: matter-tag-set-id
+      - has_many: MatterTagLink
+        via: matter-tag-id
+  - name: MatterTagLink
+    path: /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/{matter-tag-id}/links/{link-id}
+    id_param: link-id
+    description: The association between a matter tag and a matter.
+    relationships:
+      - belongs_to: MatterTag
+        via: matter-tag-id
+      - belongs_to: Matter
+        via: matter-id
+  - name: ApiToken
+    path: /api/v1/users/tokens/{token-id}
+    id_param: token-id
+    description: A user-scoped API token used to authenticate requests.
+  - name: Analytics
+    path: /api/v1/data/analytics
+    description: Aggregated legal-spend analytics powering Apperio's reporting visualisations.

@@ -1,25 +1,223 @@
 aid: apperio
 name: Apperio
-description: Apperio is a company surfaced as a portfolio company of seedcamp and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Apperio is a legal spend management and matter management platform for in-house
+  legal teams and the law firms they work with. It connects directly to law-firm
+  time-and-billing systems to give continuous, real-time visibility into billed and
+  unbilled ("work in progress") legal spend, benchmarking to negotiate rates, and
+  AI-assisted e-billing review against Outside Counsel Guidelines. The Apperio REST
+  API exposes the same secure data that powers the platform's analytics — legal-spend
+  analytics, matter (engagement) and invoice discovery, matter tagging, and e-billing
+  invoice approval workflows — across its two-sided business/law-firm model. Apperio
+  is a Seedcamp portfolio company and is now part of Persuit.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://developer.apperio.com/static/favicon-32x32.png
 url: https://raw.githubusercontent.com/api-evangelist/apperio/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - seedcamp
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: has-public-api
 specificationVersion: '0.20'
 created: '2026-07-17'
 modified: '2026-07-17'
 tags:
+- Legal
+- Legal Spend Management
+- Legal Tech
+- E-Billing
+- Matter Management
+- Legal Operations
+- Analytics
 - Company
-apis: []
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: apperio:apperio-analytics-api
+  name: Apperio Analytics API
+  description: >-
+    A set of non resource based endpoints that power various components
+
+    within Apperio. These endpoints primarily support discovery and data
+
+    investigation.
+  humanURL: https://developer.apperio.com/
+  baseURL: https://app.apperio.com/api/v1
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/apperio-analytics-api-openapi.yml
+- aid: apperio:apperio-e-billing-api
+  name: Apperio E-billing API
+  description: >-
+    The e-billing endpoints provide access to the e-billing invoices in Apperio.
+
+    They allow you to retrieve information about the invoices and the
+
+    approval workflow, and also to approve and reject invoices.
+  humanURL: https://developer.apperio.com/
+  baseURL: https://app.apperio.com/api/v1
+  tags:
+  - E-billing
+  properties:
+  - type: OpenAPI
+    url: openapi/apperio-e-billing-api-openapi.yml
+- aid: apperio:apperio-filter-api
+  name: Apperio Filter API
+  description: "The filter endpoints provide resource discovery in Apperio. This has\ntwo basic mechanisms.\
+    \ Firstly there are the resource discovery endpoints.\nThese are:\n  * `/api/v1/filter/engagements/`\n\
+    \  * `/api/v1/filter/invoices/`\n  * `/api/v1/filter/matter-tags/`\n\nThese endpoints return lists\
+    \ of resource references with decorating metadata\nthat can be filtered, ordered and paginated.\n\n\
+    Secondly resources may be tagged. The tag management endpoints allow you to\ncreate different groupings\
+    \ of matters\n\nFor those familiar with writing SQL queries, the resource discovery endpoints\ncan\
+    \ be thought of in a similar way. The `SELECT` section or projection clause\ndetermines which fields\
+    \ are returned. The `WHERE` clause or filter section determines\nwhich records are returned and `ORDER\
+    \ BY` section determines the order that they are\nreturned in. Ordering and pagination is covered\
+    \ in the section above. Below, we will\ntake each of the other sections in turn to show how these\
+    \ are handled on these endpoints. \n\n**Data Projection**\n\nThe filter API is designed to provide\
+    \ broad information about resources for easy resource\ndiscovery. The client can choose which denormalised\
+    \ fields can appear in the projection\nclause using the `fields` query parameter. Only the fields\
+    \ listed in this query parameter,\ntogether with any mandatory fields, will be included in the response.\n\
+    The field names are URL encoded comma (%2C) separated.\n\nFor example if I wish to bring back the\
+    \ fields `one`, `two` and `three` I would query the\nendpoint with:\n\n```\n...?fields=one%2Ctwo%2Cthree\n\
+    ```\n\nAnd the response will bring back only those fields and any mandatory fields (such as the\n\
+    identifier for the resource). For example the response may be:\n\n```json\n{\n  \"results\": [\n \
+    \   {\n        \"one\": 5000.0,\n        \"two\": 5,\n        \"three\": false\n    },\n    {\n  \
+    \      \"one\": 86645.23,\n        \"two\": 59541,\n        \"three\": false\n    }\n  ],\n  \"pagination\"\
+    : {\n      \"next\": null,\n      \"previous\": null,\n      \"nextPage\": null,\n      \"previousPage\"\
+    : null\n  }\n}\n```\n\nThe full list of available fields can be seen in the response body for that\
+    \ endpoint.\n\n**Resource Permissions**\n\nThe set of resources that can be discovered in the API\
+    \ is limited to those that\nthe user generating the token has access to. This can then be filtered\
+    \ further\nusing explicit filters; resources that the user is not authorized to see will not\nbe returned.\n\
+    \n**Filtering the data**\n\nOn the resource discovery endpoints the returning data can be filtered\n\
+    by each of the fields on the resource. Each field has been associated with\nthe type of filter that\
+    \ will make it easier to discover resources. The filter\ntypes are explained below.  \n\n*Range filters*\n\
+    \nRange filters allow a slice of the data to be selected. They can be used to\nselect all data less\
+    \ than equal to a value; all data above or equal to a value\nor can be combined to return a slice\
+    \ of the data. For example if I have the\nfield `foo` and wish to return all data between 10000 and\
+    \ 12000 GBP I would add\nthe filters:\n\n```\n?foo__gte=10000&foo__lte=12000\n```\n\nWhen the field\
+    \ is a monetary field it is assumed that these values will be in\nyour organisation's base currency\
+    \ and any transactions in another currency will\nbe subject to a exchange conversion on the rate held\
+    \ for the date of that\ntransaction.\n\n**Text filters**\n\nText filters will return all entries that\
+    \ start with the selected value. For\nexample if I wanted to bring back all matters that started with\
+    \ the name 'Pricing'\nI would filter on\n\n```\n?law_firm_name__icontains=Pricing\n```\n\nThese query\
+    \ would bring back matters called both 'Pricing development contract'\nand 'Pricing housing development'\n\
+    \n**Choice filters**\n\nChoice filters allow both exact matching and a selection of values to be matched.\n\
+    For example, to search for the single value apple I would include:\n\n```\n?bar=apple\n```\n\nTo bring\
+    \ back both apples, pairs and mangos:\n\n```\n?bar__in=apple%2Cpair%2Cmango\n```\n\nWhere the field\
+    \ can be null, the `__isnull` filter is provided\n\n```\n?foo__isnull=true\n```\n\nIf you want to\
+    \ incorporate null as one of the choices then `__is_null`\nand `__in` on the same field returns the\
+    \ _union_ of those resources that\nmatch one of those values and those resources where this field\
+    \ isn't set:\n\n```\n?foo__isnull=true&foo__in=cucumber%2Ctomato\n```\n\n**Boolean filters**\n\nBoolean\
+    \ filters filter out data where a field is true or false. For example, if\nI want to bring back matters\
+    \ that I haven't yet shared with the business.\n\n```\n?is_shared=false\n```"
+  humanURL: https://developer.apperio.com/
+  baseURL: https://app.apperio.com/api/v1
+  tags:
+  - Filter
+  properties:
+  - type: OpenAPI
+    url: openapi/apperio-filter-api-openapi.yml
+- aid: apperio:apperio-matter-information-api
+  name: Apperio Matter information API
+  description: A set of endpoints returning information about a specific matter.
+  humanURL: https://developer.apperio.com/
+  baseURL: https://app.apperio.com/api/v1
+  tags:
+  - Matter information
+  properties:
+  - type: OpenAPI
+    url: openapi/apperio-matter-information-api-openapi.yml
+- aid: apperio:apperio-users-api
+  name: Apperio Users API
+  description: >-
+    The users endpoints allow you to manage your API tokens. Tokens are used to
+
+    authenticate requests to the Apperio API. You can list your existing tokens,
+
+    delete tokens that are no longer needed, and activate or deactivate tokens
+
+    without permanently removing them.
+  humanURL: https://developer.apperio.com/
+  baseURL: https://app.apperio.com/api/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/apperio-users-api-openapi.yml
 common:
+- type: DeveloperPortal
+  url: https://developer.apperio.com/
+- type: Documentation
+  url: https://developer.apperio.com/
+- type: APIReference
+  url: https://developer.apperio.com/
+- type: GettingStarted
+  url: https://developer.apperio.com/
+- type: Authentication
+  url: authentication/apperio-authentication.yml
+- type: Conventions
+  url: conventions/apperio-conventions.yml
+- type: RateLimits
+  url: rate-limits/apperio-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/apperio-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/apperio-lifecycle.yml
+- type: Deprecation
+  url: https://developer.apperio.com/
+- type: ChangeLog
+  url: changelog/apperio-changelog.yml
+- type: Sandbox
+  url: sandbox/apperio-sandbox.yml
+- type: DataModel
+  url: data-model/apperio-data-model.yml
+- type: Conformance
+  url: conformance/apperio-conformance.yml
+- type: Compliance
+  url: https://www.apperio.com/information-security
+- type: TrustCenter
+  url: security/apperio-trust-center.yml
+- type: DomainSecurity
+  url: security/apperio-domain-security.yml
+- type: MCPServer
+  url: mcp/apperio-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/apperio-agentic-access.yml
+- type: LLMsTxt
+  url: llms/apperio-llms.txt
+- type: Login
+  url: https://app.apperio.com/login/
+- type: Support
+  url: https://www.apperio.com/contact
+- type: Blog
+  url: https://www.apperio.com/news
+- type: TermsOfService
+  url: https://www.apperio.com/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.apperio.com/privacy-notice
 - type: Website
-  url: http://apperio.com
+  url: https://www.apperio.com
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

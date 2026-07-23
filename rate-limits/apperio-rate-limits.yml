@@ -1,0 +1,35 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+generated: '2026-07-17'
+method: searched
+provider: Apperio
+providerId: apperio
+created: '2026-07-17'
+modified: '2026-07-17'
+tags:
+  - Rate Limiting
+  - Legal Spend
+description: >-
+  Apperio publishes an acceptable-usage policy rather than per-tier rate limits.
+  Requests sharing an authorization token must be made in series (not in
+  parallel), with a ceiling of 10,000 requests per hour per token. Clients must
+  handle HTTP 429 Too Many Requests. Contact Customer Success to raise limits.
+sources:
+  - https://developer.apperio.com/
+responseCodes:
+  throttled: 429
+limits:
+  - name: Requests per authorization token
+    scope: token
+    metric: requests_per_hour
+    limit: 10000
+    timeFrame: hour
+  - name: Concurrency
+    scope: token
+    metric: parallel_requests
+    limit: 1
+    timeFrame: instant
+    note: Requests from the same authorization token should be made in series, not in parallel.
+notes:
+  - Apperio reserves the right to suspend API access where usage contravenes the acceptable-usage policy.
+  - The API should not be used to bulk-duplicate Apperio-held data; page-size is capped to avoid large one-time extractions.

@@ -1,0 +1,28 @@
+{
+  "provider": "apperio",
+  "sources": [
+    "apperio-analytics-api-openapi.yml",
+    "apperio-e-billing-api-openapi.yml",
+    "apperio-filter-api-openapi.yml",
+    "apperio-matter-information-api-openapi.yml",
+    "apperio-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "apperio-analytics-api-openapi.yml",
+    "apperio-e-billing-api-openapi.yml",
+    "apperio-filter-api-openapi.yml",
+    "apperio-matter-information-api-openapi.yml",
+    "apperio-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [
+    "apperio-analytics-api-openapi.yml: info.version missing",
+    "apperio-e-billing-api-openapi.yml: info.version missing",
+    "apperio-filter-api-openapi.yml: info.version missing",
+    "apperio-matter-information-api-openapi.yml: info.version missing",
+    "apperio-users-api-openapi.yml: info.version missing"
+  ],
+  "notes": [],
+  "skipped": []
+}

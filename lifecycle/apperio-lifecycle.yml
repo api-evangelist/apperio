@@ -1,0 +1,31 @@
+generated: '2026-07-17'
+method: searched
+source: https://developer.apperio.com/ — API Versioning and Change Log sections
+description: >-
+  Apperio's API lifecycle policy: semantic major versioning in the URI path, a
+  documented list of breaking-change categories, and a 6-month support window for
+  each superseded major version. No public status page or SLA URL was found.
+versioning:
+  scheme: uri-path
+  current: v1
+  doc_version: '1.5'
+  docs: https://developer.apperio.com/
+  guarantees: >-
+    No breaking changes in minor upgrades. Breaking changes (changing the meaning
+    of an entity/attribute, renaming, new required request attributes, changing or
+    removing endpoint URIs, adding/removing enumeration choices) are introduced only
+    in major versions.
+deprecation:
+  policy: >-
+    Each previous major version is supported for 6 months after a new major
+    version is released. A migration plan is published for each major version to
+    inform integrators of breaking changes.
+  docs: https://developer.apperio.com/
+  sunset_header: false
+  known_deprecations:
+    - The term 'engagement' is used interchangeably with 'matter' and will be replaced by 'matter' in a future major version.
+sla:
+  url: null
+  note: No public SLA/uptime document was found; usage governed by the acceptable-usage policy.
+status_page: null
+deprecated_operations: []

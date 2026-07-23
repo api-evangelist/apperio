@@ -1,0 +1,26 @@
+generated: '2026-07-17'
+method: generated
+source: openapi/apperio-openapi-original.yml + conventions/apperio-conventions.yml
+skills:
+  - file: apperio-discover-legal-spend.md
+    name: Discover and analyze legal spend
+    api: openapi/apperio-openapi-original.yml
+    operations:
+      - 'GET /api/v1/filter/engagements/'
+      - 'GET /api/v1/filter/invoices/'
+      - 'GET /api/v1/data/analytics'
+      - 'GET /api/v1/matters/{matter-id}/header'
+  - file: apperio-ebilling-approval.md
+    name: Review and approve an e-billing invoice
+    api: openapi/apperio-openapi-original.yml
+    operations:
+      - 'GET /api/v1/ebilling/invoices/{invoice-id}/'
+      - 'GET /api/v1/ebilling/invoices/{invoice-id}/approval-workflow/'
+      - 'POST /api/v1/ebilling/invoices/{invoice-id}/approval-state/{invoice-approval-state-id}/approve/'
+  - file: apperio-matter-tagging.md
+    name: Organize matters with tags
+    api: openapi/apperio-openapi-original.yml
+    operations:
+      - 'GET /api/v1/filter/matter-tag-sets/'
+      - 'POST /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/'
+      - 'POST /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/{matter-tag-id}/links'

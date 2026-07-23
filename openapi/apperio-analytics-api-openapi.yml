@@ -1,0 +1,452 @@
+openapi: 3.0.3
+info:
+  title: Apperio API Documentation Analytics API
+  description: "# Introduction\n\nThe Apperio API allows law firms and businesses to enhance their internal\nbusiness intelligence capabilities. These APIs are designed to efficiently support\ninteractive reporting and are used to power the Apperio application.\n\n# API Versioning\n\nMajor versions will come with semantic versioning guarantees.\nThat is to say, there will be no breaking changes in minor version upgrades.\nIn particular the following changes will only be introduced in major versions of the API:\n\n  * Changing the meaning of an entity or attribute\n  * Renaming entities or attributes\n  * Adding new required attributes in the request\n  * Changing the URI of the endpoint\n  * Removing a URI endpoint\n  * Adding further choices to an enumeration\n  * Removing choices from an enumeration in the request\n\nFurther endpoints and entity attributes can be added in minor versions. It's expected that\nclients should ignore any attributes that are returned in the response that they weren't\naware of. When a multiple option attribute isn't modelled with an explicit enumeration the\nintegrating clients should also ensure that they can handle unknown responses.\n\nEach previous version of the API will be supported for 6 months after the release of a new\nmajor version. A migration plan will be published for each major version to inform integrators\nof breaking changes.\n\n### What is likely to change in the next major version of the API?\n\n#### Service Versioning\n\nEach endpoint will include the version and service name. Endpoints will have the following format:\n\n`/api/v[MAJOR VERSION NUMBER]/[SERVICE_NAME]/[ENDPOINT NAME]`\n\nHence in version 2:\n\n* `/api/v1/filter/invoices/` will change to `/api/v2/filter/invoices/`\n* `/api/v1/analytics/` will change to `/api/v2/analytics/analytics/`\n\n#### Matter / Engagement\n\nThe terms matter and engagement are used interchangeably in the current version. This\nreflects historical usage in the product. References to `engagement` will be replaced\nwith `matter` in future versions.\n\n# Change Log for Version 1.5\n\n#### v1.5\n* Updated engagement and invoice filter endpoints parameters documentation\n* Added documentation for some ebilling endpoints\n\n#### v1.4\n* Added basic information about the matter header endpoint\n\n#### v1.3\n* Update rate limits\n* Fix analytics URL and auhorization header\n\n#### v1.2\n* Key Management\n* HTTP 429 response\n* Versioning moved from service to global API version\n* Glossary definitions\n\n#### v1.1\n* Matter Tag Set Discovery Endpoint\n\n#### v1.0\n* Versioning Strategy\n* Glossary\n\n#### v0.2\n\n* Invoice discovery endpoint.\n* Null choice filter.\n* Fair usage policy.\n* Capabilities for law firm and business users.\n\n#### v0.1\n\n* Filter resource discovery API.\n\n# Authentication\n\nAll endpoints require that you be authenticated. To become authenticated\nyou will need to create an API Key from the profile page in the application,\nand supply it within the Authentication header in the following format:\n\n```\ncurl -X GET \"https://sandbox.apperio.com/api/v1/data/analytics/\"\n-H \"Authorization: Token <TOKEN VALUE>\"\n```\n\nPlease contact Customer Success to enable API access on your account.\n\nAll requests that are made to the API will be made with the capabilities of\nthe user generating the token. It's important that you ensure that the access\ntoken is kept secret and not shared outside of your organisation. In particular\nbe mindful not to check it in to code or configuration files where it can be\nseen in plain text. We recommend cycling the API key at least every 12 months.\nIf you suspect that the key may been leaked then disable it immediately in the profile\nsection and inform Apperio. Apperio do not have access to these tokens; hence, you\nwill need to generate a new token if it's lost.\n\nYou should consider that this token grants access to anything that the associated\nuser can access on the website. This will allow you to take advantage of future\nendpoints without further configuration. With this in mind be careful to give this\naccount the minimum set of privileges required for your integration.\n\n# Pagination and Ordering\n\nPagination endpoints allow ordered data to be brought back in chunks. Pagination\nis usually limited to data discovery and information feed endpoints. If available\n`PAGINATION` will be listed in the *Capabilities* section of the endpoint. The response\ncan be ordered by setting the `ordering` query parameter. This takes a URL encoded\ncomma separated list of fields to order by. If a field is prepended by a `-` then\nthe ordering is reversed. For example if I wished to order by `last_worked_at_law_firm`\nwith the latest results first and then by `engagement_id` I would add the following\nto the query:\n\n```\nordering=-last_worked_at_law_firm%2Cengagement_id\n```\n\nThe number of results returned on a page is controlled by the `page-size` parameter.\nIt defaults to 50 across the API and will be capped to avoid large one-time data\nextractions that may be prone to fail.\n\n```\nordering=-last_worked_at_law_firm%2Cengagement_id&page-size=10\n```\n\nWhen there are more items to return than can be shown on one page then a pagination\nobject is returned in the response:\n\n```json\n\"pagination\": {\n  \"next\": \"https://sandbox.apperio.com/api/v1/filter/engagements/?ordering=-last_worked_at_law_firm%2Cengagement_id&page=dj0yJnA9MiZnPWJiNTdmMDg2NzI2YzQxYWRhZmI4NmZjMjRlODI5ZTIz&page-size=10\",\n  \"previous\":null\n  \"nextPage\":\"dj0yJnA9MiZnPWJiNTdmMDg2NzI2YzQxYWRhZmI4NmZjMjRlODI5ZTIz\",\n  \"previousPage\":null\n}\n```\n\nThe `nextPage` and `previousPage` provide a token that can be passed to the `page` parameter to\nnavigate to that page. `null` indicates that there is no further data in that direction. The `next` and\n`previous` attributes provide HATEOAS style links to navigate to the next and previous page.\n\n# Business and Law Firm Capabilities\n\nApperio is a double sided platform that allows law firms and businesses to collaborate. The Apperio API is available\nto both businesses and law firms; however some requests are only available to one side of the platform. The capabilities\nsection for each endpoint details which side can access each API call.\n\nThe access token serves to identify the organisation (law firm or business). Resources in each request will be restricted\nto those available to that organisation.\n\n# Acceptable usage policy\n\n* Please respect the usage limits. If you think you are likely to exceed them then please contact Customer Success.\n  The standard usage limits are:\n  - Requests from the same authorization token should be made in series; not in parallel\n  - Maximum of 10000 requests in an hour\n* The API is designed to allow you to provide innovative services that incorporate data that's held in Apperio.\nThey should not be used as a means of duplicating that data.\n* If you're unsure about the most effective way to integrate with Apperio to support your business case then\nplease contact Customer Success so we can take you through different solutions.\n* Your application must be able to handle a `HTTP 429 Too Many Requests` response.\n* Apperio reserve the right to suspend API access if usage contravenes this policy. \n\n# Glossary\n\nThe following terminology is used throughout the API\n\n| Term           | Description   |\n| -------------  | ------------- |\n| Billable       | The billable amount includes both entries that have been billed and the potential contribution from work that's in progress. |\n| Billed         | The amount that has already been invoiced. |\n| Budget         | The estimated budgeted amount for hourly matters. For fixed matters this represents the fixed cost. This also represents the cap for capped matters (see Fee Structure). |\n| Client         | The client of the law firm. Multiple law firm clients can be associated with the one Apperio business. |\n| Disbursement   | disbursements, hard cost and soft costs. |\n| Engagement     | (see Matter) The term `engagement` is Apperio internal terminology for `matter` and will be replaced with `matter` in the next major version. |\n| Fee            | The charge for work undertaken by the law firm. |\n| Fee Structure  | How the matter will be billed. Apperio supports Hourly, Capped and Fixed Fee structures. |\n| Matter         | A law firm case. |\n| Practice Group | The division in the law firm conducting the work. |\n| Wip            | Work that has been carried out but not yet billed on the matter (Work in progress). |\n"
+servers:
+- url: https://sandbox.apperio.com/
+- url: https://app.apperio.com/
+tags:
+- name: Analytics
+  description: 'A set of non resource based endpoints that power various components
+
+    within Apperio. These endpoints primarily support discovery and data
+
+    investigation.
+
+    '
+paths:
+  /api/v1/data/analytics:
+    get:
+      summary: Analytics
+      description: 'Capabilities: BUSINESS, LAW_FIRM, PAGINATION
+
+
+        Denormalised data is split along one or more "dimensions". Each
+
+        dimension supplied segments the requested data over that dimension.
+
+        For example, if you were interested in finding your total WIP, you
+
+        would simply supply `wip` as a metric. If you were interested in
+
+        finding this per law firm, you would also supply `law_firm_id` as a
+
+        dimension, and if you wanted this over time, you would supply
+
+        `date,law_firm_id`.
+
+        '
+      parameters:
+      - name: start_date
+        in: query
+        required: true
+        schema: &id001
+          type: string
+          enum:
+          - NdaysAgo
+          - today
+          - dd-mm-yyyy
+        description: Inclusive date to gather data from
+        example: 90daysAgo
+      - name: end_date
+        in: query
+        required: true
+        schema: *id001
+        description: Inclusive date to gather data to
+        example: today
+      - name: metrics
+        in: query
+        schema:
+          type: string
+          enum:
+          - hours_worked_wip
+          - hours_worked_billed
+          - hours_worked
+          - hours_worked_wip_no_budget
+          - hours_worked_billed_no_budget
+          - hours_worked_no_budget
+          - fees_worked_billed
+          - fees_worked_wip
+          - fees_worked
+          - fees_worked_billed_no_budget
+          - fees_worked_wip_no_budget
+          - fees_worked_no_budget
+          - rate
+          - rate_no_budget
+          - rate_percentile
+          - rate_percentile_no_budget
+          - rate_min
+          - rate_min_no_budget
+          - rate_max
+          - rate_max_no_budget
+          - rate_avg
+          - rate_avg_no_budget
+          - fees_wip
+          - fees_wip_no_budget
+          - fees_billed
+          - fees_billed_no_budget
+          - fees_billable
+          - fees_billable_no_budget
+          - fees_write_down_billed
+          - fees_write_down_wip
+          - fees_write_down
+          - fees_activity_cost
+          - fees_write_down_billed_no_budget
+          - fees_write_down_wip_no_budget
+          - fees_write_down_no_budget
+          - fees_activity_cost_no_budget
+          - disbursements_wip
+          - disbursements_wip_no_budget
+          - disbursements_billed
+          - disbursements_billed_no_budget
+          - disbursements_billable
+          - disbursements_billable_no_budget
+          - disbursements_write_down_billed
+          - disbursements_write_down_wip
+          - disbursements_write_down
+          - disbursements_activity_cost
+          - disbursements_write_down_billed_no_budget
+          - disbursements_write_down_wip_no_budget
+          - disbursements_write_down_no_budget
+          - disbursements_activity_cost_no_budget
+          - write_down
+          - write_down_no_budget
+          - activity_cost
+          - activity_cost_no_budget
+          - engagement_opened
+          - wip
+          - wip_no_budget
+          - billed
+          - billed_no_budget
+          - billable
+          - billable_no_budget
+          - engagement_worked
+        description: CSV of metrics to include in the results
+        required: true
+        example: wip,billed
+      - name: dimensions
+        in: query
+        schema:
+          type: string
+          enum:
+          - date
+          - week
+          - month
+          - quarter
+          - year
+          - age
+          - engagement_id
+          - fee_earner_id
+          - fee_earner_role_id
+          - standard_role_id
+          - law_firm_id
+          - business_id
+          - currency
+          - folder_id
+          - pass_through
+          - team_id
+          - fee_structure
+          - standard_fee_structure_id
+          - business_matter_type_id
+          - law_firm_currency
+          - business_currency
+          - engagement_currency
+          - expense_type_id
+          - invoice_id
+          - ebilling_invoice_id
+          - business_config_id
+          - tag_id
+        description: CSV of dimensions to apply to the query
+      - name: page
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+        description: The number of items to return
+      - name: engagement_id
+        in: query
+        schema:
+          type: int
+          description: Filter by a single matter
+      - name: engagement_id__in
+        in: query
+        schema:
+          type: string
+          description: 'Comma separated list of Apperio matter identifiers. The commas must
+
+            be URL encoded (%2C)
+
+            '
+          example: 25%2C66
+      - name: business_config_id
+        in: query
+        schema:
+          type: int
+          description: 'Filter matters to the one Apperio business-law firm connection identifier
+
+            '
+      - name: business_config_id__in
+        in: query
+        schema:
+          type: string
+          description: 'Comma separated list of Apperio business-law firm connection identifiers.
+
+            The commas must be URL encoded (%2C)
+
+            '
+      - name: business_id
+        in: query
+        schema:
+          type: int
+          description: 'Filter matters to the one business
+
+            '
+      - name: business_matter_type_id__isnull
+        in: query
+        schema:
+          type: boolean
+          description: 'Filter matters where the matter type isn''t set
+
+            '
+      - name: business_matter_type_id__in
+        in: query
+        schema:
+          type: string
+          description: 'Comma separated list of Apperio business matter type identifiers. The commas must
+
+            be URL encoded (%2C)
+
+            '
+      - name: fee_structure
+        in: query
+        schema:
+          type: int
+          description: 'Filter matters to the one fee structure
+
+            '
+      - name: fee_structure__in
+        in: query
+        schema:
+          type: string
+          example: fixed%2Ccapped
+          description: 'Comma separated list of fee_structures. The commas must
+
+            be URL encoded (%2C)
+
+            '
+      - name: folder_id__isnull
+        in: query
+        schema:
+          type: boolean
+          description: 'Filter matters that haven''t been assigned to a folder
+
+            '
+      - name: folder_id__in
+        in: query
+        schema:
+          type: string
+          description: 'Comma separated list of folders. The commas must
+
+            be URL encoded (%2C)
+
+            '
+      - name: law_firm_id
+        in: query
+        schema:
+          type: int
+          description: 'Filter matters to the one firm
+
+            '
+      - name: law_firm_id__in
+        in: query
+        schema:
+          type: string
+          description: 'Comma separated list of firms. The commas must
+
+            be URL encoded (%2C)
+
+            '
+      - name: pass_through
+        in: query
+        schema:
+          type: boolean,
+          description: Filter matters where costs are(n't) passed through to the end client
+      - name: tag_id__in
+        in: query
+        schema:
+          type: string
+          description: 'Comma separated list of tags in the form of `[TAG_SET_ID]__[TAG_ID]`
+
+            or `[TAG_SET_ID]__isnull`. Those tags with the same tag set identifier
+
+            will first be combined with an OR and then the groups will be combined
+
+            with an AND. That is, matters need to belong to at least one tag per
+
+            tag set group. `[TAG_SET_ID]__isnull` corresponds to matters that have
+
+            not been assigned any tag in `TAG_SET_ID`.
+
+            The commas must be URL encoded (%2C).
+
+            '
+          example: 2__78%2C2__80%2C5__isnull
+      - name: team_id__isnull
+        in: query
+        schema:
+          type: int
+          description: 'Filter matters that haven''t been assigned to a business team
+
+            '
+      - name: team_id__in
+        in: query
+        schema:
+          type: string
+          description: 'Comma separated list of business teams. The commas must
+
+            be URL encoded (%2C)
+
+            '
+      tags:
+      - Analytics
+      responses:
+        '200':
+          description: 'Analytic data
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  analytics:
+                    type: object
+                    properties:
+                      query:
+                        type: object
+                        description: 'Contains the data used when querying analytics.
+
+                          '
+                        properties:
+                          start_date:
+                            type: string
+                            example: 90daysAgo
+                          end_date:
+                            type: string
+                            example: today
+                          limit:
+                            type: integer
+                            nullable: true
+                            example: null
+                          ordering:
+                            type: string
+                            nullable: true
+                            example: null
+                          currency:
+                            type: string
+                            nullable: true
+                            example: null
+                      columns:
+                        type: array
+                        items:
+                          type: string
+                        example:
+                        - date
+                        - law_firm_id
+                        - wip
+                        description: 'The name of each column, dimensions followed by metrics.
+
+                          '
+                      column-types:
+                        type: array
+                        items:
+                          type: string
+                          enum:
+                          - DIMENSION
+                          - METRIC
+                          example:
+                          - DIMENSION
+                          - DIMENSION
+                          - METRIC
+                        description: 'Is the value at index a dimension or metric value
+
+                          '
+                      column-data-types:
+                        type: array
+                        items:
+                          type: string
+                          enum:
+                          - CURRENCY
+                          - INT
+                          - FLOAT
+                          - DATE
+                          - STRING
+                          - COUNT
+                          - BOOL_COUNT
+                          - BOOL
+                          example:
+                          - DATE
+                          - INT
+                          - CURRENCY
+                        description: 'The data type of the value at each index within thr row
+
+                          '
+                      rows:
+                        type: array
+                        items:
+                          type: array
+                        description: 'Each array contains the requested dimensions followed by metrics.
+
+                          '
+                        example:
+                        - - 01-03-2020
+                          - 1
+                          - 100
+                        - - 01-03-2020
+                          - 2
+                          - 500
+                        - - 02-03-2020
+                          - 1
+                          - 400
+                      pagination:
+                        type: object
+                        properties:
+                          next:
+                            type: string
+                            nullable: true
+                            description: location of the next page
+                            example: aAbBcCdDeEfFgG
+                          previous:
+                            type: string
+                            nullable: true
+                            description: location of the previous page
+                            example: null
+                          nextPage:
+                            type: string
+                            nullable: true
+                            description: value of the next page paginator
+                            example: https://app.apperio.com/api/v1/analytics?page=aAbBcCdDeEfFgG
+                          previousPage:
+                            type: string
+                            nullable: true
+                            description: value of the previous page paginator
+                            example: null
+        '400':
+          description: 'Bad request
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    type: string
+                  description: 'Error messages
+
+                    '

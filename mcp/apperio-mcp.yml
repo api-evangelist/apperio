@@ -1,0 +1,104 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+source: openapi/apperio-openapi-original.yml — one candidate tool per operation (no official Apperio MCP server was found)
+description: >-
+  Candidate MCP tool surface derived from the Apperio OpenAPI operations. Apperio
+  publishes no official hosted/remote MCP server; this is a governance starting
+  point mapping each REST operation to a prospective MCP tool. Operations have no
+  operationIds in the spec, so tools are keyed by method + path.
+server:
+  name: apperio
+  transport: http
+  url: null
+tools:
+  - name: get_analytics
+    description: Retrieve aggregated legal-spend analytics.
+    source_operation: 'GET /api/v1/data/analytics'
+  - name: list_engagements
+    description: Discover matter (engagement) resources.
+    source_operation: 'GET /api/v1/filter/engagements/'
+  - name: list_invoices
+    description: Discover invoice resources.
+    source_operation: 'GET /api/v1/filter/invoices/'
+  - name: list_matter_tags
+    description: Discover matter tags.
+    source_operation: 'GET /api/v1/filter/matter-tags/'
+  - name: list_matter_tag_sets
+    description: List matter tag sets.
+    source_operation: 'GET /api/v1/filter/matter-tag-sets/'
+  - name: get_matter_tag_set
+    description: Get matter tag set details.
+    source_operation: 'GET /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/'
+  - name: create_matter_tags
+    description: Create matter tags in a tag set.
+    source_operation: 'POST /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/'
+  - name: get_matter_tag
+    description: Get matter tag details.
+    source_operation: 'GET /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/{matter-tag-id}/'
+  - name: rename_matter_tag
+    description: Rename a matter tag.
+    source_operation: 'PUT /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/{matter-tag-id}/'
+  - name: delete_matter_tag
+    description: Remove a matter tag.
+    source_operation: 'DELETE /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/{matter-tag-id}/'
+  - name: tag_matter
+    description: Link a matter tag to a matter.
+    source_operation: 'POST /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/{matter-tag-id}/links'
+  - name: untag_matter
+    description: Remove the tag from a matter.
+    source_operation: 'DELETE /api/v1/filter/matter-tag-sets/{matter-tag-set-id}/matter-tags/{matter-tag-id}/links/{link-id}'
+  - name: get_matter_header
+    description: Get the matter header.
+    source_operation: 'GET /api/v1/matters/{matter-id}/header'
+  - name: get_invoice
+    description: Get invoice details.
+    source_operation: 'GET /api/v1/ebilling/invoices/{invoice-id}/'
+  - name: change_invoice_status
+    description: Change an invoice status.
+    source_operation: 'POST /api/v1/ebilling/invoices/{invoice-id}/status/'
+  - name: get_invoice_approval_workflow
+    description: Get the invoice approval workflow.
+    source_operation: 'GET /api/v1/ebilling/invoices/{invoice-id}/approval-workflow/'
+  - name: approve_invoice
+    description: Approve an invoice at an approval state.
+    source_operation: 'POST /api/v1/ebilling/invoices/{invoice-id}/approval-state/{invoice-approval-state-id}/approve/'
+  - name: reject_invoice
+    description: Reject an invoice at an approval state.
+    source_operation: 'POST /api/v1/ebilling/invoices/{invoice-id}/approval-state/{invoice-approval-state-id}/reject/'
+  - name: adjust_invoice
+    description: Adjust the payable amount of an invoice.
+    source_operation: 'POST /api/v1/ebilling/invoices/{invoice-id}/approval-state/{invoice-approval-state-id}/adjust/'
+  - name: query_invoice
+    description: Query an invoice.
+    source_operation: 'POST /api/v1/ebilling/invoices/{invoice-id}/approval-state/{invoice-approval-state-id}/query/'
+  - name: set_invoice_attributes
+    description: Set invoice attributes.
+    source_operation: 'PUT /api/v1/ebilling/invoices/{invoice-id}/attributes/'
+  - name: list_business_attributes
+    description: List business invoice attributes.
+    source_operation: 'GET /api/v1/ebilling/invoices/business-attributes/'
+  - name: create_business_attribute
+    description: Create a business invoice attribute.
+    source_operation: 'POST /api/v1/ebilling/invoices/business-attributes/'
+  - name: get_business_attribute
+    description: Get a business invoice attribute.
+    source_operation: 'GET /api/v1/ebilling/invoices/business-attributes/{name}/'
+  - name: update_business_attribute
+    description: Update a business invoice attribute.
+    source_operation: 'PUT /api/v1/ebilling/invoices/business-attributes/{name}/'
+  - name: delete_business_attribute
+    description: Delete a business invoice attribute.
+    source_operation: 'DELETE /api/v1/ebilling/invoices/business-attributes/{name}/'
+  - name: list_api_tokens
+    description: List API tokens.
+    source_operation: 'GET /api/v1/users/tokens/'
+  - name: create_api_token
+    description: Create an API token.
+    source_operation: 'POST /api/v1/users/tokens/'
+  - name: delete_api_token
+    description: Delete an API token.
+    source_operation: 'DELETE /api/v1/users/tokens/{token-id}/'
+  - name: update_api_token_status
+    description: Update an API token status.
+    source_operation: 'PUT /api/v1/users/tokens/{token-id}/status/'

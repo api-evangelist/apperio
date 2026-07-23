@@ -1,0 +1,244 @@
+openapi: 3.0.3
+info:
+  title: Apperio API Documentation Analytics Users API
+  description: "# Introduction\n\nThe Apperio API allows law firms and businesses to enhance their internal\nbusiness intelligence capabilities. These APIs are designed to efficiently support\ninteractive reporting and are used to power the Apperio application.\n\n# API Versioning\n\nMajor versions will come with semantic versioning guarantees.\nThat is to say, there will be no breaking changes in minor version upgrades.\nIn particular the following changes will only be introduced in major versions of the API:\n\n  * Changing the meaning of an entity or attribute\n  * Renaming entities or attributes\n  * Adding new required attributes in the request\n  * Changing the URI of the endpoint\n  * Removing a URI endpoint\n  * Adding further choices to an enumeration\n  * Removing choices from an enumeration in the request\n\nFurther endpoints and entity attributes can be added in minor versions. It's expected that\nclients should ignore any attributes that are returned in the response that they weren't\naware of. When a multiple option attribute isn't modelled with an explicit enumeration the\nintegrating clients should also ensure that they can handle unknown responses.\n\nEach previous version of the API will be supported for 6 months after the release of a new\nmajor version. A migration plan will be published for each major version to inform integrators\nof breaking changes.\n\n### What is likely to change in the next major version of the API?\n\n#### Service Versioning\n\nEach endpoint will include the version and service name. Endpoints will have the following format:\n\n`/api/v[MAJOR VERSION NUMBER]/[SERVICE_NAME]/[ENDPOINT NAME]`\n\nHence in version 2:\n\n* `/api/v1/filter/invoices/` will change to `/api/v2/filter/invoices/`\n* `/api/v1/analytics/` will change to `/api/v2/analytics/analytics/`\n\n#### Matter / Engagement\n\nThe terms matter and engagement are used interchangeably in the current version. This\nreflects historical usage in the product. References to `engagement` will be replaced\nwith `matter` in future versions.\n\n# Change Log for Version 1.5\n\n#### v1.5\n* Updated engagement and invoice filter endpoints parameters documentation\n* Added documentation for some ebilling endpoints\n\n#### v1.4\n* Added basic information about the matter header endpoint\n\n#### v1.3\n* Update rate limits\n* Fix analytics URL and auhorization header\n\n#### v1.2\n* Key Management\n* HTTP 429 response\n* Versioning moved from service to global API version\n* Glossary definitions\n\n#### v1.1\n* Matter Tag Set Discovery Endpoint\n\n#### v1.0\n* Versioning Strategy\n* Glossary\n\n#### v0.2\n\n* Invoice discovery endpoint.\n* Null choice filter.\n* Fair usage policy.\n* Capabilities for law firm and business users.\n\n#### v0.1\n\n* Filter resource discovery API.\n\n# Authentication\n\nAll endpoints require that you be authenticated. To become authenticated\nyou will need to create an API Key from the profile page in the application,\nand supply it within the Authentication header in the following format:\n\n```\ncurl -X GET \"https://sandbox.apperio.com/api/v1/data/analytics/\"\n-H \"Authorization: Token <TOKEN VALUE>\"\n```\n\nPlease contact Customer Success to enable API access on your account.\n\nAll requests that are made to the API will be made with the capabilities of\nthe user generating the token. It's important that you ensure that the access\ntoken is kept secret and not shared outside of your organisation. In particular\nbe mindful not to check it in to code or configuration files where it can be\nseen in plain text. We recommend cycling the API key at least every 12 months.\nIf you suspect that the key may been leaked then disable it immediately in the profile\nsection and inform Apperio. Apperio do not have access to these tokens; hence, you\nwill need to generate a new token if it's lost.\n\nYou should consider that this token grants access to anything that the associated\nuser can access on the website. This will allow you to take advantage of future\nendpoints without further configuration. With this in mind be careful to give this\naccount the minimum set of privileges required for your integration.\n\n# Pagination and Ordering\n\nPagination endpoints allow ordered data to be brought back in chunks. Pagination\nis usually limited to data discovery and information feed endpoints. If available\n`PAGINATION` will be listed in the *Capabilities* section of the endpoint. The response\ncan be ordered by setting the `ordering` query parameter. This takes a URL encoded\ncomma separated list of fields to order by. If a field is prepended by a `-` then\nthe ordering is reversed. For example if I wished to order by `last_worked_at_law_firm`\nwith the latest results first and then by `engagement_id` I would add the following\nto the query:\n\n```\nordering=-last_worked_at_law_firm%2Cengagement_id\n```\n\nThe number of results returned on a page is controlled by the `page-size` parameter.\nIt defaults to 50 across the API and will be capped to avoid large one-time data\nextractions that may be prone to fail.\n\n```\nordering=-last_worked_at_law_firm%2Cengagement_id&page-size=10\n```\n\nWhen there are more items to return than can be shown on one page then a pagination\nobject is returned in the response:\n\n```json\n\"pagination\": {\n  \"next\": \"https://sandbox.apperio.com/api/v1/filter/engagements/?ordering=-last_worked_at_law_firm%2Cengagement_id&page=dj0yJnA9MiZnPWJiNTdmMDg2NzI2YzQxYWRhZmI4NmZjMjRlODI5ZTIz&page-size=10\",\n  \"previous\":null\n  \"nextPage\":\"dj0yJnA9MiZnPWJiNTdmMDg2NzI2YzQxYWRhZmI4NmZjMjRlODI5ZTIz\",\n  \"previousPage\":null\n}\n```\n\nThe `nextPage` and `previousPage` provide a token that can be passed to the `page` parameter to\nnavigate to that page. `null` indicates that there is no further data in that direction. The `next` and\n`previous` attributes provide HATEOAS style links to navigate to the next and previous page.\n\n# Business and Law Firm Capabilities\n\nApperio is a double sided platform that allows law firms and businesses to collaborate. The Apperio API is available\nto both businesses and law firms; however some requests are only available to one side of the platform. The capabilities\nsection for each endpoint details which side can access each API call.\n\nThe access token serves to identify the organisation (law firm or business). Resources in each request will be restricted\nto those available to that organisation.\n\n# Acceptable usage policy\n\n* Please respect the usage limits. If you think you are likely to exceed them then please contact Customer Success.\n  The standard usage limits are:\n  - Requests from the same authorization token should be made in series; not in parallel\n  - Maximum of 10000 requests in an hour\n* The API is designed to allow you to provide innovative services that incorporate data that's held in Apperio.\nThey should not be used as a means of duplicating that data.\n* If you're unsure about the most effective way to integrate with Apperio to support your business case then\nplease contact Customer Success so we can take you through different solutions.\n* Your application must be able to handle a `HTTP 429 Too Many Requests` response.\n* Apperio reserve the right to suspend API access if usage contravenes this policy. \n\n# Glossary\n\nThe following terminology is used throughout the API\n\n| Term           | Description   |\n| -------------  | ------------- |\n| Billable       | The billable amount includes both entries that have been billed and the potential contribution from work that's in progress. |\n| Billed         | The amount that has already been invoiced. |\n| Budget         | The estimated budgeted amount for hourly matters. For fixed matters this represents the fixed cost. This also represents the cap for capped matters (see Fee Structure). |\n| Client         | The client of the law firm. Multiple law firm clients can be associated with the one Apperio business. |\n| Disbursement   | disbursements, hard cost and soft costs. |\n| Engagement     | (see Matter) The term `engagement` is Apperio internal terminology for `matter` and will be replaced with `matter` in the next major version. |\n| Fee            | The charge for work undertaken by the law firm. |\n| Fee Structure  | How the matter will be billed. Apperio supports Hourly, Capped and Fixed Fee structures. |\n| Matter         | A law firm case. |\n| Practice Group | The division in the law firm conducting the work. |\n| Wip            | Work that has been carried out but not yet billed on the matter (Work in progress). |\n"
+servers:
+- url: https://sandbox.apperio.com/
+- url: https://app.apperio.com/
+tags:
+- name: Users
+  description: 'The users endpoints allow you to manage your API tokens. Tokens are used to
+
+    authenticate requests to the Apperio API. You can list your existing tokens,
+
+    delete tokens that are no longer needed, and activate or deactivate tokens
+
+    without permanently removing them.
+
+    '
+paths:
+  /api/v1/users/tokens/:
+    get:
+      summary: List API tokens
+      description: 'Capabilities: BUSINESS, LAW_FIRM
+
+
+        Returns all API tokens belonging to the authenticated user, ordered by creation date
+
+        with the most recently created token first.
+
+
+        Each token is identified by its `beginning` field — the first 6 characters of the
+
+        token value. The full token value is only available at the time of creation and
+
+        cannot be retrieved afterwards.
+
+        '
+      tags:
+      - Users
+      responses:
+        '200':
+          description: 'List of API tokens
+
+            '
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  description: An API token belonging to the authenticated user
+                  required:
+                  - id
+                  - beginning
+                  - created
+                  - is_active
+                  properties:
+                    id:
+                      type: integer
+                      description: Unique identifier for the token
+                      example: 42
+                    beginning:
+                      type: string
+                      description: The first 6 characters of the token, used to identify it
+                      example: a1b2c3
+                    created:
+                      type: string
+                      format: date-time
+                      description: The date and time the token was created
+                      example: '2024-03-15T10:30:00Z'
+                    is_active:
+                      type: boolean
+                      description: Whether the token is currently active
+                      example: true
+        '401':
+          description: 'Unauthenticated access - ensure to create a valid API token
+
+            '
+    post:
+      summary: Create an API token
+      description: 'Capabilities: BUSINESS, LAW_FIRM
+
+
+        Creates a new API token for the authenticated user. The full token value is returned
+
+        in the `raw_token` field **only in this response** — it cannot be retrieved again.
+
+        Store it securely immediately after creation.
+
+
+        A maximum of 2 tokens can be active per user at any time.
+
+        '
+      tags:
+      - Users
+      responses:
+        '201':
+          description: 'Token successfully created
+
+            '
+          content:
+            application/json:
+              schema:
+                allOf:
+                - type: object
+                  description: An API token belonging to the authenticated user
+                  required:
+                  - id
+                  - beginning
+                  - created
+                  - is_active
+                  properties:
+                    id:
+                      type: integer
+                      description: Unique identifier for the token
+                      example: 42
+                    beginning:
+                      type: string
+                      description: The first 6 characters of the token, used to identify it
+                      example: a1b2c3
+                    created:
+                      type: string
+                      format: date-time
+                      description: The date and time the token was created
+                      example: '2024-03-15T10:30:00Z'
+                    is_active:
+                      type: boolean
+                      description: Whether the token is currently active
+                      example: true
+                - type: object
+                  required:
+                  - raw_token
+                  properties:
+                    raw_token:
+                      type: string
+                      description: 'The full token value. This is only returned once at creation time
+
+                        and cannot be retrieved again.
+
+                        '
+                      example: a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2
+        '400':
+          description: 'Invalid request - the user already has 2 tokens
+
+            '
+        '401':
+          description: 'Unauthenticated access - ensure to create a valid API token
+
+            '
+  /api/v1/users/tokens/{token-id}/:
+    delete:
+      summary: Delete an API token
+      description: 'Capabilities: BUSINESS, LAW_FIRM
+
+
+        Permanently deletes the specified API token. Any integrations using this token
+
+        will immediately lose access.
+
+        '
+      tags:
+      - Users
+      parameters:
+      - name: token-id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Token ID
+          example: 42
+      responses:
+        '204':
+          description: 'Token successfully deleted
+
+            '
+        '401':
+          description: 'Unauthenticated access - ensure to create a valid API token
+
+            '
+        '404':
+          description: 'Token not found
+
+            '
+  /api/v1/users/tokens/{token-id}/status/:
+    put:
+      summary: Update token status
+      description: 'Capabilities: BUSINESS, LAW_FIRM
+
+
+        Activates or deactivates the specified API token. A deactivated token cannot be used
+
+        to authenticate requests but is not deleted and can be reactivated at any time.
+
+
+        If you suspect a token has been compromised, deactivate it immediately and generate
+
+        a new one.
+
+        '
+      tags:
+      - Users
+      parameters:
+      - name: token-id
+        in: path
+        required: true
+        schema:
+          type: integer
+          description: Token ID
+          example: 42
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - is_active
+              properties:
+                is_active:
+                  type: boolean
+                  description: Whether the token should be active
+                  example: false
+      responses:
+        '200':
+          description: 'Updated token status
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  is_active:
+                    type: boolean
+                    description: The updated active status of the token
+                    example: false
+        '401':
+          description: 'Unauthenticated access - ensure to create a valid API token
+
+            '
+        '404':
+          description: 'Token not found
+
+            '

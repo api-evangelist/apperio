@@ -1,0 +1,67 @@
+generated: '2026-07-17'
+method: searched
+source: https://developer.apperio.com/ — cross-cutting request/response conventions from the Apperio API Documentation
+description: >-
+  How the Apperio API behaves across every operation: authentication, pagination
+  and ordering, capabilities-based access, the error envelope, versioning, and
+  rate-limit signaling. These are the developer-experience conventions the
+  OpenAPI does not fully express.
+
+base_url: https://app.apperio.com/api/v1
+sandbox_base_url: https://sandbox.apperio.com/api/v1
+api_style: REST over HTTPS, JSON responses
+
+authentication:
+  scheme: apiKey in Authorization header, format "Token <value>"
+  detail: authentication/apperio-authentication.yml
+  docs: https://developer.apperio.com/
+
+idempotency:
+  supported: false
+  note: >-
+    Apperio does not document an idempotency-key mechanism. Write operations
+    (POST/PUT/DELETE) are not declared idempotent beyond the inherent idempotency
+    of PUT/DELETE. Clients should make requests from a single token in series.
+
+pagination:
+  style: cursor
+  request_params:
+    page: opaque cursor token taken from nextPage / previousPage
+    page-size: results per page; defaults to 50, capped by the API
+    ordering: URL-encoded comma-separated field list; prefix a field with '-' to reverse
+  response_fields:
+    pagination.next: HATEOAS URL to the next page (null when none)
+    pagination.previous: HATEOAS URL to the previous page (null when none)
+    pagination.nextPage: opaque cursor to pass to the page parameter (null when none)
+    pagination.previousPage: opaque cursor to pass to the page parameter (null when none)
+  capability_flag: Endpoints supporting pagination list PAGINATION in their Capabilities section.
+  docs: https://developer.apperio.com/
+
+capabilities:
+  description: >-
+    Apperio is a two-sided platform. Each endpoint declares a Capabilities
+    section listing which side may call it — BUSINESS (in-house legal team),
+    LAW_FIRM, and/or PAGINATION. The token identifies the organisation and
+    restricts resources to those it can access.
+  values: [BUSINESS, LAW_FIRM, PAGINATION]
+
+versioning:
+  style: uri-path
+  current: v1
+  spec_version: '1.5'
+  detail: lifecycle/apperio-lifecycle.yml
+  note: >-
+    Major versions carry semantic-versioning guarantees; no breaking changes in
+    minor upgrades. Each previous major version is supported for 6 months after a
+    new major release. Version moved from per-service to a global API version in v1.2.
+
+error_envelope:
+  format: field-keyed message arrays (Django REST Framework style)
+  shape: 'JSON object mapping each field/key to an array of human-readable error message strings'
+  content_type: application/json
+  detail: errors/apperio-problem-types.yml
+
+rate_limiting:
+  signal: HTTP 429 Too Many Requests
+  policy: 10,000 requests/hour per token; requests from one token in series, not parallel
+  detail: rate-limits/apperio-rate-limits.yml

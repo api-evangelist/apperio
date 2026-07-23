@@ -1,0 +1,37 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/apperio-openapi-original.yml + https://developer.apperio.com/ conventions
+description: >-
+  Cross-cutting standards conformance derived from the Apperio OpenAPI and
+  documented conventions. Apperio uses token (apiKey) auth and DRF-style
+  field-keyed error messages rather than OAuth2/OIDC or RFC 9457.
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: Auth is an apiKey token in the Authorization header, not OAuth2.
+  - id: oidc
+    conforms: false
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a field-keyed message-array envelope, not application/problem+json.
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: Deprecation policy is documented but no Sunset/Deprecation headers are advertised.
+  - id: pagination
+    conforms: true
+    evidence: Cursor pagination via page / page-size / ordering with HATEOAS next/previous links.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key mechanism documented.
+  - id: rest
+    conforms: true
+    evidence: Resource-oriented HTTPS/JSON API over /api/v1 with standard verbs.
+  - id: openapi-3
+    conforms: true
+    evidence: Published OpenAPI 3.0.3 document at developer.apperio.com/apperio-api.yaml.
+  - id: fhir
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: scim
+    conforms: false

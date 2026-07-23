@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: searched
+source: >-
+  https://developer.apperio.com/ — OpenAPI servers[] and the Authentication
+  section, which use https://sandbox.apperio.com as the test host.
+description: >-
+  Apperio exposes a dedicated sandbox host that mirrors the production API
+  surface for integration testing. There are no published magic test values;
+  the sandbox is a separate environment reached at the same /api/v1 paths with an
+  API token. Never invent test data.
+environments:
+  - name: sandbox
+    base_url: https://sandbox.apperio.com/api/v1
+    purpose: Integration testing against the same API surface as production.
+  - name: production
+    base_url: https://app.apperio.com/api/v1
+    purpose: Live legal-spend data.
+authentication:
+  scheme: apiKey in Authorization header ('Token <value>'), same as production
+  provisioning: Contact Customer Success to enable API access; create a token on the profile page.
+test_values: none-published
+notes:
+  - The documentation's curl examples target https://sandbox.apperio.com/api/v1/data/analytics/.
+  - No hosted test tokens, test clocks, or fixture/trigger tooling are documented.
