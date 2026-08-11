@@ -162,6 +162,8 @@ apis:
   - type: OpenAPI
     url: openapi/apperio-users-api-openapi.yml
 common:
+- type: Overlay
+  url: overlays/apperio-openapi-overlay.yaml
 - type: DeveloperPortal
   url: https://developer.apperio.com/
 - type: Documentation
