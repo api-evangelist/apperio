@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apperio API Documentation Analytics Users API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List API tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/users/tokens/"
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM\n\nReturns all API tokens belonging to the authenticated user, ordered by creation date\nwith the most recently created token first.\n\nEach token is identified by its `beginning` field — the first 6 characters of the\ntoken value. The full token value is only available at the time of creation and\ncannot be retrieved afterwards.\n"
+        },
+        {
+          "info": {
+            "name": "Create an API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/users/tokens/"
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM\n\nCreates a new API token for the authenticated user. The full token value is returned\nin the `raw_token` field **only in this response** — it cannot be retrieved again.\nStore it securely immediately after creation.\n\nA maximum of 2 tokens can be active per user at any time.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an API token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox.apperio.com/api/v1/users/tokens/:token-id/",
+            "params": [
+              {
+                "name": "token-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM\n\nPermanently deletes the specified API token. Any integrations using this token\nwill immediately lose access.\n"
+        },
+        {
+          "info": {
+            "name": "Update token status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandbox.apperio.com/api/v1/users/tokens/:token-id/status/",
+            "params": [
+              {
+                "name": "token-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM\n\nActivates or deactivates the specified API token. A deactivated token cannot be used\nto authenticate requests but is not deleted and can be reactivated at any time.\n\nIf you suspect a token has been compromised, deactivate it immediately and generate\na new one.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,292 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apperio API Documentation Analytics E-billing API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "E-billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the invoice details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/:invoice-id/",
+            "params": [
+              {
+                "name": "invoice-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM\n"
+        },
+        {
+          "info": {
+            "name": "Change invoice status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/:invoice-id/status/",
+            "params": [
+              {
+                "name": "invoice-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM\n"
+        },
+        {
+          "info": {
+            "name": "Get information about the invoice's approval workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/:invoice-id/approval-workflow/",
+            "params": [
+              {
+                "name": "invoice-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n"
+        },
+        {
+          "info": {
+            "name": "Approve the invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/:invoice-id/approval-state/:invoice-approval-state-id/approve/",
+            "params": [
+              {
+                "name": "invoice-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoice-approval-state-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n"
+        },
+        {
+          "info": {
+            "name": "Reject the invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/:invoice-id/approval-state/:invoice-approval-state-id/reject/",
+            "params": [
+              {
+                "name": "invoice-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoice-approval-state-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n"
+        },
+        {
+          "info": {
+            "name": "Adjust the payable amount of the invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/:invoice-id/approval-state/:invoice-approval-state-id/adjust/",
+            "params": [
+              {
+                "name": "invoice-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoice-approval-state-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n\nThis endpoint allows you to adjust the payable amount of the invoice.\nIt can only be called for approval states that allow adjustments.\n"
+        },
+        {
+          "info": {
+            "name": "Query the invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/:invoice-id/approval-state/:invoice-approval-state-id/query/",
+            "params": [
+              {
+                "name": "invoice-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoice-approval-state-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n"
+        },
+        {
+          "info": {
+            "name": "Set the invoice attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/:invoice-id/attributes/",
+            "params": [
+              {
+                "name": "invoice-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n"
+        },
+        {
+          "info": {
+            "name": "List business invoice attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/business-attributes/",
+            "params": [
+              {
+                "name": "show_in_form",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n\nReturns all custom invoice attributes configured for the authenticated user's business,\nordered by `order`, then `label`, then `name`.\n\nAttributes define the custom fields that can be set on invoices submitted through Apperio.\nEach attribute's `name` is used as the key in invoice attribute data and in\n`attribute_{name}` filter parameters on the invoice filter endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Create a business invoice attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/business-attributes/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n\nCreates a new custom invoice attribute for the authenticated user's business.\n\nIf `name` is not provided it will be auto-generated from `label` (lowercased,\nspaces replaced with underscores). The `name` and `attr_type` fields are immutable\nafter creation.\n"
+        },
+        {
+          "info": {
+            "name": "Get a business invoice attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/business-attributes/:name/",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n\nReturns the details of a single invoice attribute identified by its `name`.\n"
+        },
+        {
+          "info": {
+            "name": "Update a business invoice attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/business-attributes/:name/",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n\nUpdates an existing invoice attribute.\n\nThe `name` and `attr_type` fields are immutable and cannot be changed after creation.\nFor `dropdown` attributes, the `options` list is replaced in full on each update —\ninclude all options you wish to retain.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a business invoice attribute",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox.apperio.com/api/v1/ebilling/invoices/business-attributes/:name/",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n\nDeletes an invoice attribute.\n\nAn attribute can only be deleted if no invoices currently have a value set for it\n(i.e. `can_delete` is `true` on the attribute). Attempting to delete an attribute\nthat is in use returns `403`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

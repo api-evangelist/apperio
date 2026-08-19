@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apperio API Documentation Analytics Matter information API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Matter information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Matter header",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/matters/:matter-id/header",
+            "params": [
+              {
+                "name": "matter-id",
+                "value": "123",
+                "type": "path",
+                "description": "Inclusive date to gather data from\n\nIMPORTANT: This parameter depends on the type of user.\nFor business users, it is the `project_id`.\nFor law firm users - `engagement_id`.\nYou can retrieve both from the `/api/v1/filter/engagements` endpoint.\n"
+              }
+            ]
+          },
+          "docs": "Returns data displayed in the header of the matter page.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

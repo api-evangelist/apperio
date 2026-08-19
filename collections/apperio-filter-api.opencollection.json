@@ -1,0 +1,1707 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apperio API Documentation Analytics Filter API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discover matter resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/filter/engagements/",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "engagement_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "engagement_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "project_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_config_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_config_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "standard_fee_structure_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "standard_fee_structure_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_config_is_ebilled",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_matter_type_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_matter_type_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_matter_type_id__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "accessible",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_at__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_at__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_at__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "created_at__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "earliest_work_date__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "earliest_work_date__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "earliest_work_date__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "earliest_work_date__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_worked_at_business__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_worked_at_business__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_worked_at_business__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_worked_at_business__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_worked_at_law_firm__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_worked_at_law_firm__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_worked_at_law_firm__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_worked_at_law_firm__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "service_provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "own_assignment_date__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "own_assignment_date__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "own_assignment_date__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "own_assignment_date__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "own_assignment_seen",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billable__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billable__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_total__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_total__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_total_disbursements__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_total_disbursements__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_total_fees__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_total_fees__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_percentage__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_percentage__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_disbursements_percentage__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_disbursements_percentage__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_fees_percentage__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_fees_percentage__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_engagement_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_starred",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "my_matters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aged_wip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aged_wip__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_level",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_level__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_level_fees",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_level_fees__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_level_disbursements",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "budget_level_disbursements__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_or_law_firm_engagement_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_or_law_firm_engagement_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_or_business_engagement_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_or_business_engagement_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_reference_or_business_engagement_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_reference_or_business_engagement_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_engagement_related_names",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_engagement_related_names__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_engagement_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billing_entity_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billing_entity_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "matter_owner",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "matter_owner__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "matter_owner__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billable__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billable__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fee_structure",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fee_structure__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billable__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billable__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "write_down__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "write_down__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_write_down__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_write_down__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_write_down__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_write_down__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "folder_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "folder_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "folder_id__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_shared",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_engagement_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_engagement_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_matter_reference",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_matter_reference__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pass_through",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "practice_group_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "practice_group_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "practice_group_id__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "practice_group_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "practice_group_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "confidential",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "confidential_project",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "team_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "team_id__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip__gte",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM, PAGINATION\nMatter discovery endpoint. The returned projection can be controlled by setting the\n`fields` parameter to just return the fields you require. Results can be ordered and\npaginated.\n"
+        },
+        {
+          "info": {
+            "name": "Discover invoice resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/filter/invoices/",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed_business__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed_business__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed_law_firm__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed_law_firm__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip_business__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip_business__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip_law_firm__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip_law_firm__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "total_amount__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "total_amount__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "total_amount_adjusted__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "total_amount_adjusted__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "flagged__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "flagged__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_flagged__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_flagged__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_flagged__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_flagged__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billing_entity_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billing_entity_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "has_withholding_tax",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "withheld_fees__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "withheld_fees__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "withheld_user_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "withheld_user_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_manual",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "has_pms_spend",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "has_matching_pms_spend",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "date__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_ebilled",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed_business__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed_business__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed_law_firm__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed_law_firm__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip_business__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip_business__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip_law_firm__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip_law_firm__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_currency",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_fees_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_fees_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_disbursements_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_disbursements_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_status__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_status_changed_at__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_status_changed_at__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_status_changed_at__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_status_changed_at__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_status_changed_automatically",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_void_queried_at__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_void_queried_at__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_void_queried_at__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_void_queried_at__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_tax_total__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_tax_total__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "custom_approval_state_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "custom_approval_state_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "custom_approval_state_created_at__lt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "custom_approval_state_created_at__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "custom_approval_state_created_at__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "custom_approval_state_created_at__gt",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "custom_approval_reviewer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "custom_approval_reviewer_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "engagement_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "engagement_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "engagement_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "exclude_ebilling",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed_business__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed_business__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed_law_firm__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed_law_firm__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip_business__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip_business__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip_law_firm__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip_law_firm__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "invoice_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_reference",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_reference__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "service_provider_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "attribute_{name}",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ebilling_void_queried_within_days",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_starred",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "my_matters",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_or_engagement_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM, PAGINATION\n\n\nInvoice discovery endpoint. The returned projection can be controlled by setting the\n`fields` parameter to just return the fields you require. Results can be ordered and\npaginated.\n\n## Filtering by attributes\n\nInvoices can be filtered by their custom attribute values using dynamic query parameters\nin the form `attribute_{name}`, where `{name}` is the attribute name as configured for\nthe business. For example, to filter invoices where the `cost_cente"
+        },
+        {
+          "info": {
+            "name": "Discover matter tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tags/",
+            "params": [
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page-size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordering",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "matter_tag_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "matter_tag_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billable__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billable__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billable__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billable__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "disbursements_wip__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billable__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billable__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_billed__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fees_wip__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latest_work_date__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "latest_work_date__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "matter_tag_name__icontains",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "matter_tag_set_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "matter_tag_set_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_of_matters__gte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "number_of_matters__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip__lte",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wip__gte",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS, PAGINATION\n\nDiscover Matter Tags from the aggregations on the matters with the tag.\nCurrency fields such as billed and wip are the total spend of all the tagged\nmatters in the organisation currency. Dates are the earliest or latest date\nof all the tagged matters.\n"
+        },
+        {
+          "info": {
+            "name": "List matter tag sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tag-sets/",
+            "params": [
+              {
+                "name": "show_list_view",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_template",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n\nTag sets allow matters to be grouped by their attributes. Examples of groupings could\nbe projects, deals and teams managing the matter.\n"
+        },
+        {
+          "info": {
+            "name": "Matter tag set details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tag-sets/:matter-tag-set-id/",
+            "params": [
+              {
+                "name": "matter-tag-set-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n\nThe details of the matter tag set.\n"
+        },
+        {
+          "info": {
+            "name": "Create matter tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tag-sets/:matter-tag-set-id/matter-tags/",
+            "params": [
+              {
+                "name": "matter-tag-set-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n\nCreate new matter tags that can be assigned to matters.\n"
+        },
+        {
+          "info": {
+            "name": "Matter tag details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tag-sets/:matter-tag-set-id/matter-tags/:matter-tag-id/",
+            "params": [
+              {
+                "name": "matter-tag-set-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "matter-tag-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n\nName and identifier of the matter tag.\n"
+        },
+        {
+          "info": {
+            "name": "Rename matter tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tag-sets/:matter-tag-set-id/matter-tags/:matter-tag-id/",
+            "params": [
+              {
+                "name": "matter-tag-set-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "matter-tag-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n"
+        },
+        {
+          "info": {
+            "name": "Remove a matter tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tag-sets/:matter-tag-set-id/matter-tags/:matter-tag-id/",
+            "params": [
+              {
+                "name": "matter-tag-set-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "matter-tag-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n"
+        },
+        {
+          "info": {
+            "name": "Tag a matter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tag-sets/:matter-tag-set-id/matter-tags/:matter-tag-id/links",
+            "params": [
+              {
+                "name": "matter-tag-set-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "matter-tag-id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Capabilities: BUSINESS\n\nAssociate the matter with a tag.\n"
+        },
+        {
+          "info": {
+            "name": "Remove the tag from a matter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://sandbox.apperio.com/api/v1/filter/matter-tag-sets/:matter-tag-set-id/matter-tags/:matter-tag-id/links/:link-id",
+            "params": [
+              {
+                "name": "matter-tag-set-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "matter-tag-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "link-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

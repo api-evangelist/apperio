@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apperio API Documentation Analytics API"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://sandbox.apperio.com/api/v1/data/analytics",
+            "params": [
+              {
+                "name": "start_date",
+                "value": "90daysAgo",
+                "type": "query",
+                "description": "Inclusive date to gather data from"
+              },
+              {
+                "name": "end_date",
+                "value": "today",
+                "type": "query",
+                "description": "Inclusive date to gather data to"
+              },
+              {
+                "name": "metrics",
+                "value": "wip,billed",
+                "type": "query",
+                "description": "CSV of metrics to include in the results"
+              },
+              {
+                "name": "dimensions",
+                "value": "",
+                "type": "query",
+                "description": "CSV of dimensions to apply to the query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of items to return"
+              },
+              {
+                "name": "engagement_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "engagement_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_config_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_config_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_matter_type_id__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_matter_type_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fee_structure",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fee_structure__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "folder_id__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "folder_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "law_firm_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pass_through",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag_id__in",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "team_id__isnull",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "team_id__in",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Capabilities: BUSINESS, LAW_FIRM, PAGINATION\n\nDenormalised data is split along one or more \"dimensions\". Each\ndimension supplied segments the requested data over that dimension.\nFor example, if you were interested in finding your total WIP, you\nwould simply supply `wip` as a metric. If you were interested in\nfinding this per law firm, you would also supply `law_firm_id` as a\ndimension, and if you wanted this over time, you would supply\n`date,law_firm_id`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
