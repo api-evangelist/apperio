@@ -74,6 +74,8 @@ apis:
   humanURL: https://developer.apperio.com/
   baseURL: https://app.apperio.com/api/v1
   tags:
+  - E-Billing
+  tags_raw:
   - E-billing
   properties:
   - type: OpenAPI
@@ -157,6 +159,8 @@ apis:
   humanURL: https://developer.apperio.com/
   baseURL: https://app.apperio.com/api/v1
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
