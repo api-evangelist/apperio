@@ -86,7 +86,7 @@ apis:
   humanURL: https://developer.apperio.com/
   baseURL: https://app.apperio.com/api/v1
   tags:
-  - E-Billing
+  - E-billing
   tags_raw:
   - E-billing
   properties:
