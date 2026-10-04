@@ -185,6 +185,9 @@ apis:
   - type: OpenAPI
     url: openapi/apperio-users-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/apperio-capability-edges.yml
+  name: Apperio Business Capability Map
 - type: Overlay
   url: overlays/apperio-openapi-overlay.yaml
 - type: DeveloperPortal

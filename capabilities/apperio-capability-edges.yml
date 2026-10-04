@@ -1,0 +1,34 @@
+slug: apperio
+provider: Apperio
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: E-billing
+  spec_file: apperio-e-billing-api-openapi.yml
+  capability_id: BC-150.50
+  capability_id_l1: BC-150
+  capability_name: Legal Operations Management
+  confidence: 0.8
+  evidence: GET /api/v1/ebilling/invoices/{invoice-id}/approval-workflow/ Get information about the invoice's
+    approval workflow; POST .../adjust/ Adjust the payable amount of the invoice
+  reason: Law-firm invoice review, approval workflow and adjustment — exactly the e-billing component
+    named in Legal Operations Management. Some chance a grader prefers Accounts Payable, so 0.8.
+- tag: Matter information
+  spec_file: apperio-matter-information-api-openapi.yml
+  capability_id: BC-150.50
+  capability_id_l1: BC-150
+  capability_name: Legal Operations Management
+  confidence: 0.7
+  evidence: GET /api/v1/matters/{matter-id}/header getApiV1MattersByMatterIdHeader Matter header
+  reason: Retrieval of legal matter header data on a matter-management platform maps to Legal Operations
+    Management (matter management). Single read-only endpoint limits confidence.
